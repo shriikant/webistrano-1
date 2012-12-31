@@ -1,0 +1,55 @@
+<% flashed_errors(:role) %>
+
+<div class="control-group">
+  <%= form.label t("role.role"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.select :name, Role::DEFAULT_NAMES, {:include_blank => true} %>
+  </div>
+</div>
+<div class="control-group">
+  <%= form.label t("role.custom_name"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :custom_name, :class => "text_field" %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("role.host"), :class => "control-label" %>
+  <div class="controls">
+    <span class="<%= @role.errors['host'].empty? ? 'fieldWithErrors' : '' %>">
+      <%= form.select :host_id, @host_choices, {:include_blank => true } %>
+    </span>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("role.ssh_port"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :ssh_port, :class => "text_field" %>
+    <%= t("role.ssh_port_default") %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("role.primary"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.check_box :primary %>
+    <%= t("role.primary_under") %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("role.no_release"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.check_box :no_release %>
+    <%= t("role.no_release_under") %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("role.no_symlink"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.check_box :no_symlink, :style => '' %>
+    <%= t("role.no_symlink_under") %>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="special_box">
+  <div class="special_box_top"></div>
+  <div class="special_box_middle" style="min-height: 175px; height: 163px;">
+  	<div style="padding: 7px 50px 0px 50px; *padding: 0px 50px;"><%= image_tag 'peritor_theme/status_' + @deployment.status + '.gif', :title => @deployment.status %></div>
+      <div class="deployment_status">
+        <b><%= t("deployment.status") %>:</b> <%= @deployment.status %>
+        <% if @deployment.cancelling_possible? %>
+          &nbsp; &nbsp;
+          <%= link_to t("deployment.cancel"), cancel_project_stage_deployment_path(current_project, current_stage, @deployment), :confirm => "Are you sure? Killing this deployment will not cleanup and rollback.", :method => "post", :class => 'arrow_link' %>
+        <% end %>
+    	  <% if @deployment.completed? %>
+          &nbsp; &nbsp;
+      	  <%= link_to t("deployment.repeat"), new_project_stage_deployment_path(current_project, current_stage) + '?repeat=' + h(@deployment.id), :class => 'arrow_link'  %>
+        <% end %>
+      </div>
+  </div>
+  <div class="special_box_bottom"></div>
+</div>
+
+<div class="box">
+  <div class="box_top"></div>
+  <div class="box_middle">
+    <div>
+      <b><%= t("deployment.task") %></b>
+      <p><%= @deployment.task %></p>
+    </div>
+    <div>
+      <b><%= t("stage.title") %></b>
+      <p><%= link_to @deployment.stage.name, project_stage_path(@project, @stage) %> </p>
+    </div>
+    <div>
+      <b><%= t("deployment.deployed_by") %></b> 
+      <p><%= user_info(@deployment.user) rescue '' %></p>
+    </div>
+    <div>
+      <b><%= t("deployment.revision") %></b> 
+      <p><%= @deployment.revision %></p>
+    </div>
+    <div>
+      <b><%= t("deployment.started") %></b>
+      <p><%= @deployment.created_at.to_s(:log) %> (<%= current_user.time_zone rescue 'UTC' %>)</p>
+    </div>
+    <div>
+      <b><%= t("deployment.completed") %></b>
+      <p><%= "#{@deployment.completed_at.to_s(:log)} (#{current_user.time_zone})" rescue nil %></p>
+    </div>
+  </div>
+  <div class="box_bottom"></div>
+</div>
+
+<div class="clear"></div>
+
+<br />
+
+<fieldset class="fieldset">
+  <legend><%= t("deployment.comment") %></legend>
+  <%= raw web_friendly_text @deployment.description %>
+</fieldset>
+<br /> <br />
+
+<fieldset class="fieldset">
+  <legend><%= t("deployment.log") %></legend>
+	<div class="log_output">
+		<pre><%= @deployment.log.gsub('\n', "\n") rescue '' %></pre>
+  </div>
+</fieldset>
+
+<br />
+
+<%= link_to t("deployment.back_to"), project_stage_path(@project, @stage), :class => 'arrow_link ontheright', :id => 'back_link_at_the_bottom' %>
+
+<% unless @deployment.completed? %>
+  <script type="text/javascript">
+    function update_status() {
+      $.ajax({
+        type: "GET",
+        url: "<%= project_stage_deployment_path(@project, @stage, @deployment) %>.js",
+        dataType: "html",
+        success: function(res) {
+          $('#status_info').html(res);
+        }
+      });
+    }
+
+    setTimeout(update_status, 5000);
+  </script>
+<% end %>

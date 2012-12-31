@@ -1,0 +1,43 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_box do %>
+    <%= t("hosts") %>
+  <% end %>
+<% end %>
+
+<% content_for :page_title do %>
+  <% @page_title = t("hosts") %>
+  <h2><%= t("hosts") %></h2>
+<% end %>
+
+<fieldset class="fieldset">
+  <legend> <%= pluralize Host.count, 'Host' %> listed</legend>
+
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th width="50%"><%= t("host.name2") %></th>
+        <th width="24%"><%= t("host.stages") %></th>
+        <th width="24%"><%= t("host.roles") %></th>
+        <th width="1%"></th>
+        <th width="1%"></th>
+      </tr>
+    </thead>
+    <% @hosts.each do |host| %>
+      <tr class="<%= cycle :even, :odd  %>">
+        <td><%= link_to host.name, host_path(host) %></td>
+        <td><%= host.stages.count %></td>
+        <td><%= host.roles.count %></td>
+        <% if current_user.admin? %>
+          <td class="nowrap"><%= link_to t("edit"), edit_host_path(host) %></td>
+          <td class="nowrap"><%= link_to t("delete"), host_path(host), :confirm => 'Are you sure?', :method => :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <% if current_user.admin? %>
+    <br />
+    <%= link_to t("host.new"), new_host_path, :class => 'arrow_link' %>
+  <% end %>
+</fieldset>
+

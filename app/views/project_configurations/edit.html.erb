@@ -1,0 +1,24 @@
+<% content_for(:breadcrumb) do %>
+  <%= breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %>
+    <span class="divider">&raquo;</span>
+    <%= t("project.title") %> <%= link_to current_project.name, project_path(current_project) %>
+    <span class="divider">&raquo;</span>
+    <%= t("edit") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = t("project_configuration.edit") %>
+  <h2><%= t("project_configuration.edit") %></h2>
+<% end %>
+
+<div>
+  <%= form_for @configuration, :url => project_project_configuration_path(@project, @configuration), :html => {:method => :put} do |f| %>
+    <%= render :partial => 'form' %>
+    <div class="form-actions">
+      <%= f.submit t("project_configuration.update"), :class => "btn btn-primary" %>
+      <%= link_to t("project.back_to"), project_path(current_project), :class => 'arrow_link ontheright' %>
+    </div>
+  <% end %>
+</div>

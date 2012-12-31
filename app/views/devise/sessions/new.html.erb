@@ -1,0 +1,31 @@
+<% content_for(:page_title) do %>
+  <% @page_title = "Login" %>
+  <h2 style="color: #A40008;"><%= t :welcome_webistrano %></h2>
+<% end %>
+
+<%= form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
+  <fieldset class="fieldset">
+    <legend><%= t :login_webistrano %></legend>
+    <div style="float: right; padding: 20px 0;">
+      <%= image_tag('peritor_theme/webistrano_logo_large.png', :border => '0', :width => '400', :height => '130')%>
+    </div>
+    <div>
+      <p>
+        <%= f.label t :login %><br/>
+        <%= f.text_field :login %>
+      </p>
+      <p>
+        <%= f.label t :password %><br/>
+        <%= f.password_field :password %>
+      </p>
+      <% if devise_mapping.rememberable? -%>
+        <p>
+          <%= f.check_box :remember_me, :class => 'noframe' %>
+          <%= f.label t :remember_me %>
+        </p>
+      <% end %>
+      <p><%= f.submit t :sign_in %></p>
+    </div>
+  </fieldset>
+<% end %>
+

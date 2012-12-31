@@ -1,0 +1,18 @@
+<% if @stage.deployments.empty? %>
+  <p><%= t("stage.recent_deployment_none") %></p>
+<% else %>
+  <%= render :partial => 'deployments/list_item', :locals => {:deployments => @stage.deployments} %>
+<% end %>
+<br />
+<% if @stage.deployment_possible? %>
+  <%= link_to t("deployment.new"), new_project_stage_deployment_path(current_project, @stage) %> <%= (@stage.deployments.count > 1) ? '|' : '' %>
+<% else %>
+  <p>
+    <%= t("stage.recent_deployment_not") %><br />
+    <%= display_deployment_problems(@stage) %>
+  </p>
+<% end %>
+
+<% if @stage.deployments.count > 1 %>
+  <%= link_to t("deployment.complete_history"), project_stage_deployments_path(current_project, @stage) %>
+<% end %>

@@ -1,0 +1,30 @@
+<div class="control-group">
+  <%= form.label t("deployment.task"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :task, :style => 'width:330px;' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("deployment.comment"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_area :description, :style => "width:330px;height:80px;" %>
+  </div>
+</div>
+
+<div class="control-group">
+  <% unless @stage.prompt_configurations.empty? %>
+    <% @stage.prompt_configurations.each do |config| %>
+      <%= form.label "#{t('deployment.config')}: #{config.name}", :class => "control-label" %>
+      <div class="controls">
+        <input type="<%= input_type(config.name) %>" id="deployment_prompt_config_<%= config.name %>" name="deployment[prompt_config][<%= config.name %>]" style="width:330px;" value="<%= @deployment.prompt_config[config.name.to_sym] %>" />
+      </div>
+    <% end %>
+  <% end %>
+
+  <!-- hidden ids of hosts to exlude -->
+  <% for host in @stage.hosts.sort_by{|x| x.name} %>
+    <input style="display:none;" type="checkbox" value="<%= host.id %>" name="deployment[excluded_host_ids][]" id="deployment_excluded_host_ids_<%= host.id %>" <%= (@deployment.excluded_host_ids.include?(host.id) ? 'checked="checked"' : ''  rescue '') %>/></td>
+<% end %>
+</div>
+

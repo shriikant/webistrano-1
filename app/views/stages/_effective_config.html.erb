@@ -1,0 +1,24 @@
+<h3><%= t("stage_configuration.effective") %></h3>
+
+<% if @stage.effective_configuration.empty? %>
+  <p>No effective configuration present. The effective configuration is the result of the stage specific configuration entries overriding the project configuration entries.</p>
+<% else %>
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th width="30%"><%= t("name") %></th>
+        <th width="50%"><%= t("value") %></th>
+        <th><%= t("stage_configuration.prompt") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stage.effective_configuration.each do |config| %>
+        <tr>
+          <td><%= truncate config.name, :length => 25 %></td>
+          <td><%= truncate hide_password_in_value(config), :length => 45 %></td>
+          <td><%= raw config.prompt_status_in_html %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,28 @@
+<% content_for(:breadcrumb) do %>
+  <%= breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %>
+    <span class="divider">&raquo;</span>
+    <%= t("project.title") %> <%= link_to current_project.name, project_path(current_project) %>
+    <span class="divider">&raquo;</span>
+    <%= t("stage.title") %> <%= link_to current_stage.name, project_stage_path(current_project, current_stage) %>
+    <span class="divider">&raquo;</span>
+    <%= t("stage_configuration.new") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = t("stage_configuration.new") %>
+  <h2><%= t("stage_configuration.new") %></h2>
+<% end %>
+
+<% flashed_errors(:configuration) %>
+
+<div>
+  <%= form_for @configuration, :url => project_stage_stage_configurations_path(@project, @stage), :html => {:class => "form-horizontal"} do |f| %>
+    <%= render :partial => 'project_configurations/form', :locals => {:form => f} %>
+    <div class="form-actions">
+      <%= f.submit t("stage_configuration.create"), :class => "btn btn-primary" %>
+      <%= link_to t("stage_configuration.back_to"), project_stage_path(@project, @stage), :class => 'arrow_link ontheright' %>
+    </div>
+  <% end %>
+</div>

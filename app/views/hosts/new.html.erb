@@ -1,0 +1,24 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_box do %>
+    <%= link_to t("hosts"), hosts_path %>
+    <span class="divider">&raquo;</span>
+    <%= t("host.new") %>
+  <% end %>
+<% end %>
+
+<% content_for :page_title do %>
+  <% @page_title = t("host.new") %>
+  <h2><%= t("host.new") %></h2>
+<% end %>
+
+<% flashed_errors(:host) %>
+
+<div>
+  <%= form_for @host, :html => {:class => "form-horizontal"} do |f| %>
+    <%= render :partial => 'form', :locals => {:form => f} %>
+    <div class="form-actions">
+      <%= f.submit t("host.create"), class: "btn btn-primary" %>
+      <%= link_to t("host.back_to"), hosts_path, :class => 'arrow_link ontheright' %>
+    </div>
+  <% end %>
+</div>

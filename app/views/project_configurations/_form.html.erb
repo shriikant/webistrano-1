@@ -1,0 +1,34 @@
+<% flashed_errors(:configuration) %>
+
+<div class="control-group">
+  <b><%= t("name") %></b>
+  <div class="controls">
+    <%= text_field 'configuration', 'name' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <b><%= t("value") %></b>
+  <% disabled = @configuration.prompt? ? {:disabled =>'disabled'} : {} %>
+  <div class="controls">
+    <%= text_field 'configuration', 'value', disabled.merge(:style =>'width: 330px') %>
+    <p style="margin-top:5px">
+      <%= check_box 'configuration', 'prompt_on_deploy' %>
+      <%= t("project_configuration.prompt_under") %>
+    </p>
+  </div>
+</div>
+
+<% content_for(:page_scripts) do %>
+<script type="text/javascript">
+  $(function() {
+    $('#configuration_prompt_on_deploy').on('change', function(ev) {
+      if ($(this).attr('checked')) {
+        $('#configuration_value').attr('disabled', 'disabled');
+      } else {
+        $('#configuration_value').removeAttr('disabled');
+      }
+    });
+  });
+</script>
+<% end %>

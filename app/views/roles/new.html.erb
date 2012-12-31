@@ -1,0 +1,24 @@
+<% content_for(:breadcrumb) do %>
+  <%= breadcrumb_box do %>
+    <%= link_to @project.name, project_path(@project) %>
+    <span class="divider">&raquo;</span>
+    <%= link_to @stage.name, project_stage_path(@project, @stage) %>
+    <span class="divider">&raquo;</span>
+    <%= t("role.new") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = "#{t('role.new')} - #{@stage.name}" %>
+  <h2><%= t("role.new") %> - <%= @stage.name %></h2>
+<% end %>
+
+<div>
+  <%= form_for @role, :url => project_stage_roles_path(current_project, current_stage), :html => {:class => "form-horizontal"} do |f| %>
+    <%= render :partial => 'form', :locals => {:form => f} %>
+    <div class="form-actions">
+      <%= f.submit t("role.create"), :class => "btn btn-primary" %>
+      <%= link_to t("role.back_to"), project_stage_path(@project, @stage), :class => 'btn ontheright' %>
+    </div>
+  <% end %>
+</div>

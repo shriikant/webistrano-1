@@ -1,0 +1,50 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_box do %>
+    <%= link_to t("users"), users_path %>
+    <span class="divider">&raquo;</span>
+    <%= @user.login %>
+  <% end %>
+<% end %>
+
+<% content_for :page_title do %>
+  <% @page_title = "#{t('user.title')} #{@user.login}" %>
+  <h2><%= t("user.title") %> <%= user_info(@user) %></h2>
+<% end %>
+
+<div>
+  <dl class="dl-horizontal">
+    <% if @user.admin? %>
+      <dt><%= t("user.user_role") %>:</dt>
+      <dd><%= t("user.admin") %></dd>
+    <% end %>
+
+    <dt><%= t("user.login") %>:</dt>
+    <dd><%= @user.login %></dd>
+
+    <dt><%= t("user.email") %>:</dt>
+    <dd><%= @user.email %></dd>
+
+    <dt><%= t("user.timezone") %>:</dt>
+    <dd><%= @user.time_zone.to_s %></dd>
+
+    <dt><%= t("user.deployments") %>:</dt>
+    <dd><%= @user.deployments.count %></dd>
+  </dl>
+
+  <div>
+    <% if current_user.admin? or current_user == @user %>
+      <%= link_to t("user.edit"), [:edit, @user] %> |
+
+      <% if @user.disabled? %>
+        <%= link_to t("user.enabled"), enable_user_path(@user), :data => {:confirm => 'Are you sure?'}, :method => :post %>
+      <% else %>
+        <%= link_to t("user.disabled"), enable_user_path(@user), :data => {:confirm => 'Are you sure? Disabled users can no longer login.'}, :method => :post %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <h2><%= t("stage.recent_deployment") %></h2>
+  <%= render :partial => 'deployments', :locals => {:deployments => @deployments, :user => @user} %>
+</div>

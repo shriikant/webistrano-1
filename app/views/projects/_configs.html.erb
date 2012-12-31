@@ -1,0 +1,25 @@
+<% if @project.configuration_parameters.empty? %>
+  <div>
+    <strong><%= t("project_configuration.none") %></strong><br/>
+    <p><%= t("project_configuration.none_under") %></p>
+  </div>
+<% else %>
+  <table class="sortable">
+    <tr>
+      <th width="1%"><%= t("name") %></th>
+      <th width="98%"><%= t("value") %></th>
+      <th width="1%"><%= t("project_configuration.prompt") %></th>
+      <th width="1%"></th>
+      <th width="1%"></th>
+    </tr>
+    <% for config in @project.configuration_parameters %>
+      <tr class="<%= cycle :even, :odd, :name => 'configs' %>">
+        <td title="<%= config.name %>"><%= truncate config.name, :length => 25 %></td>
+        <td title="<%= config.value %>"><%= truncate hide_password_in_value(config), :length => 45 %></td>
+        <td><%= config.prompt_status_in_html %></td>
+        <td class="nowrap"><%= link_to t("edit"), edit_project_project_configuration_path(@project, config) %></td>
+        <td class="nowrap"><%= link_to t("delete"), project_project_configuration_path(@project, config), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

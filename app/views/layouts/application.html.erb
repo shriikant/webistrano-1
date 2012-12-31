@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:page_title) ? @page_title : "Webistrano" %></title>
+    <%= csrf_meta_tags %>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+  <body>
+    <div id="app_top">
+      <div id="header">
+        <div id="header_claim">Capistrano deployment the easy way</div>
+        <a href="<%= root_path %>"><%= image_tag 'peritor_theme/webistrano_logo.gif', :border => '0' %></a>
+      </div>
+      <div id="main_content">
+        <% if signed_in? %>
+          <div class="menu">
+            <%= render :partial => 'layouts/menu' %>
+          </div>
+        <% else %>
+          <div style="width:80px; float:left;">&nbsp;</div>
+        <% end %>
+        <div class="content">
+          <%= yield :breadcrumb %>
+          <%= yield :flash_content %>
+          <%= yield :page_title %>
+
+          <% unless flash[:notice].blank? %>
+            <%= nice_flash(flash[:notice]) %>
+          <% end %>
+
+          <% unless flash[:error].blank? %>
+            <%= error_flash(flash[:error]) %>
+          <% end %>
+
+          <%= yield :action_box %>
+
+          <%= yield %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div id="app_bottom"></div>
+
+    <div id="footer">
+      <div id="footer_logged">
+        <% if signed_in? %>
+          <%= t :login_as %> <%= link_to current_user.login, current_user %> | <%= link_to t(:logout), destroy_user_session_path, :method => :delete %> 
+        <% end %>
+      </div>
+      Copyright &copy; 2007, 2008, 2009 | Version <%= WEBISTRANO_VERSION %> | <a href="http://labs.peritor.com/webistrano" target="_blank">http://labs.peritor.com/webistrano</a>
+    </div>
+
+    <%= javascript_include_tag "application" %>
+    <%= yield :page_scripts %>
+  </body>
+</html>

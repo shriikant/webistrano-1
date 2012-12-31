@@ -1,0 +1,22 @@
+<% content_for(:breadcrumb) do %>
+  <% breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %>
+    <span class="devider">&raquo;</span>
+    <%= t("project.new") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = t("project.new") %>
+  <h2><%= t("project.new") %></h2>
+<% end %>
+
+<div>
+  <%= form_for @project, :html => {:class => "form-horizontal"} do |f| %>
+    <%= render :partial => 'form', :locals => {:form => f} %>
+    <div class="form-actions">
+      <%= f.submit t("project.create"), :class => "btn btn-primary" %>
+      <%= link_to t("project.back_to_list"), projects_path, :class => 'arrow_link ontheright' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,59 @@
+<% flashed_errors(:recipe) %>
+
+<div class="control-group">
+  <%= form.label t("recipe.name"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :name, :class => "text_field" %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("recipe.description"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_area :description, :class => "text_field", :style => "width:663px; height: 100px;"%>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("recipe.body"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_area :body, :id => "recipe_body", :class => "text_field", :style => "width:663px; height: 100px;"%>
+  </div>
+</div>
+
+<div id="preview_fieldset">
+  <fieldset class="fieldset">
+    <legend><%= t("recipe.code_preview") %></legend>
+    <div id="preview">
+      <%= render :partial => 'preview', :locals => {:recipe => @recipe} %>
+    </div>
+  </fieldset>
+  <br/>
+</div>
+
+<% content_for(:page_scripts) do %>
+<script>
+  $(function() {
+    var recipe_body = $('#recipe_body');
+    var preview_output = $('#preview');
+
+    var getPreviewCode = function() {
+      $.ajax({
+        type: 'GET',
+        url: "<%= preview_recipes_url %>",
+        cache: false,
+        data: {
+          recipe: recipe_body.val()
+        },
+        dataType: 'html'
+      }).done(function(msg) {
+        preview_output.html(msg);
+      });
+    };
+
+    window.setInterval(function() {
+      getPreviewCode();
+    }, 1000);
+  });
+</script>
+<% end %>

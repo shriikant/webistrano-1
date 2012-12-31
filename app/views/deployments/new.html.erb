@@ -1,0 +1,51 @@
+<% content_for(:breadcrumb) do %>
+  <% breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %>
+    <span class="divider">&raquo;</span>
+    <%= t("project.title") %> <%= link_to current_project.name, project_path(current_project) %>
+    <span class="divider">&raquo;</span>
+    <%= t("stage.title") %> <%= link_to current_stage.name, project_stage_path(current_project, current_stage) %>
+    <span class="divider">&raquo;</span>
+    <%= t("deployment.title") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = "#{t('deployment.title')} - #{current_stage.name} - #{current_project.name}" %>
+  <h2><%= t("deployment.title") %></h2>
+<% end %>
+
+<% if current_stage.locked? %>
+  <% content_for(:flash_content) do %>
+    <%= locking_flash(render :partial => 'lock_info', :locals => {:stage => current_stage, :deployment => @deployment}) %>
+  <% end %>
+<% end %>
+
+<% flashed_errors(:deployment) %>
+
+<div>
+  <%= form_for @deployment, :url => project_stage_deployments_path(@project, @stage) do |f| %>
+    <div style="float: left;">
+      <%= render :partial => 'form', :locals => {:form => f} %>
+    </div>
+    <div class="small_box">
+      <div class="small_box_top"></div>
+      <div class="small_box_middle" style="min-height: 140px; *height: 160px;">
+        <h3><%= t("deployment.deploy_hosts") %></h3>
+        <% if @stage.roles.count > 0 %>
+          <% for host in @stage.hosts.sort_by{|x| x.name} %>
+            <input type="checkbox" value="<%= host.id %>" name="deployment[host_ids][]" id="deployment_host_ids_<%= host.id %>" <%= (@deployment.excluded_host_ids.include?(host.id) ? '' : 'checked="checked"' rescue '')%>/>
+            <label for="deployment_host_ids_<%= host.id %>"><%= host.name %></label>
+          <% end %>
+        <% else %>
+          <%= t("deployment.no_host") %><br />
+        <% end %>
+      </div>
+      <div class="small_box_bottom"></div>
+    </div>
+    <div class="form-actions" style="clear: both;">
+      <%= f.submit t("deployment.create"), :class => "btn btn-primary" %>
+      <%= link_to t("deployment.back_to"), project_stage_path(@project, @stage), :class => 'arrow_link ontheright' %>
+    </div>
+  <% end %>
+</div>

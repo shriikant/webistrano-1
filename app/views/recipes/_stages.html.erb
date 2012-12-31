@@ -1,0 +1,18 @@
+<% if @recipe.stages.empty? %>
+  <p>
+    <%= t("recipe.used_by_stages_none") %>
+  </p>
+<% else %>
+  <table class="sortable">
+    <tr>
+      <th width="50%"><%= t("project.title") %></th>
+      <th width="50%"><%= t("stage.title") %></th>
+    </tr>
+    <% @recipe.stages.each do |stage| %>
+      <tr class="<%= cycle :even, :odd, :name => 'stages' %>">
+        <td><%= link_to stage.project.name, project_path(stage.project) %></td>
+        <td><%= link_to stage.name, project_stage_path(stage.project, stage) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

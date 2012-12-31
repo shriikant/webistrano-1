@@ -1,0 +1,14 @@
+<div class="menu_box">
+  <div class="menu_box_header">
+    <div class="menu_box_arrow">
+      <%= image_tag('peritor_theme/menu_arrow_down.gif', :onclick => "App.close_menu_box('#{box_type}'); return false", :id => "#{box_type}_arrow_down", :style => "#{show_if_opened(status)};") %>
+      <%= image_tag('peritor_theme/menu_arrow_right.gif', :onclick => "App.open_menu_box('#{box_type}'); return false", :id => "#{box_type}_arrow_right", :style => "#{show_if_closed(status)};") %>
+    </div>
+    <div class="menu_title"><%= link_to t(box_type), path %></div>
+  </div>
+  <div class="menu_box_body">
+    <%= render :partial => "layouts/#{box_type}", :locals => {:status => status} %>
+    <div class="clear"></div>
+  </div>
+  <div class="menu_box_footer"></div>
+</div>

@@ -1,0 +1,15 @@
+<div class="control-group">
+  <%= form.label t("stage.name"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :name, :class => "text_field" %>
+    (e.g. 'Prod', 'Test', 'Dev')
+  </div>
+</div>
+
+<div class="control-group">
+  <%= form.label t("stage.alert_emails"), :class => "control-label" %>
+  <div class="controls">
+    <%= form.text_field :alert_emails, :class => "text_field" %>
+    <%= t("stage.alert_emails_under") %>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<% if @stage.recipes.empty? %>
+  <p><%= t("stage.used_recipes_none") %></p>
+<% else %>
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th><%= t("recipe.name") %></th>
+        <th><%= t("recipe.description") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stage.recipes.ordered.each do |recipe| %>
+        <tr>
+          <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+          <td><%= recipe.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

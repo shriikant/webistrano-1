@@ -1,0 +1,121 @@
+<% content_for(:breadcrumb) do %>
+  <% breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %> 
+    <span class="divider">&raquo;</span>
+    <%= t("project.title") %> <%= link_to current_project.name, project_path(current_project) %>
+    <span class="divider">&raquo;</span>
+    <%= t("stage.title") %> <%= link_to current_stage.name, project_stage_path(current_project, current_stage) %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = "#{t('project.title')} #{current_project.name} - #{t('stage.title')} #{@stage.name}"%>
+  <h2><%= t("stage.title") %> <%= link_to @stage.name, project_stage_path(current_project, @stage) %></h2>
+<% end %>
+
+<div class="special_box">
+  <div class="special_box_top"></div>
+  <div class="special_box_middle deployments_box">
+    <p><%= link_to t("deployment.deploy"), new_project_stage_deployment_path(current_project, @stage) + '?task=deploy', :class => 'arrow_link' %></p>
+    <p><%= link_to t("deployment.deploy_and_migrate"), new_project_stage_deployment_path(current_project, @stage) + '?task=deploy:migrations', :class => 'arrow_link' %></p>
+    <p><%= link_to t("deployment.restart_app_servers"), new_project_stage_deployment_path(current_project, @stage) + '?task=deploy:restart', :class => 'arrow_link' %></p>
+    <p><%= link_to t("deployment.setup"), new_project_stage_deployment_path(current_project, @stage) + '?task=deploy:setup', :class => 'arrow_link' %></p>
+    <p>
+      <%= select_tag 'task', options_for_select(@task_list) %>
+    </p>
+    <p>
+      <%= link_to t("deployment.execute"), new_project_stage_deployment_path(current_project, @stage), :class => 'arrow_link', 
+        :onclick => "location.href='#{new_project_stage_deployment_path(current_project, @stage)}?task=' + $('#task').val(); return false" %> |
+      <%= link_to t("deployment.info"), tasks_project_stage_path(current_project, @stage), :class => 'arrow_link',
+        :onclick => "location.href='#{tasks_project_stage_path(current_project, @stage)}#' + $('#task').val(); return false" %>
+    </p>
+  </div>
+  <div class="special_box_bottom"></div>
+</div>
+
+<div class="box">
+  <div class="box_top"></div>
+  <div class="box_middle">
+    <div>
+      <b><%= t("stage.name") %></b>
+      <p><%= @stage.name %></p>
+    </div>
+    <div>
+      <b><%= t("project.name") %></b>
+      <p><%= link_to @stage.project.name, project_url(current_project) %></p>
+    </div>
+    <div>
+      <b><%= t("stage.alert_emails") %></b>
+      <p><%= @stage.alert_emails %></p>
+    </div>
+    <div>
+      <b><%= t("stage.hosts") %></b>
+      <p><%= @stage.hosts.count %></p>
+    </div>
+    <br />
+    <%= link_to t("edit"), edit_project_stage_path(current_project, @stage), :class => 'arrow_link' %> | 
+    <%= link_to t("delete"), project_stage_path(current_project, @stage), :confirm => 'Are you sure?', :method => :delete, :class => 'arrow_link'  %> | 
+    <%= link_to t("stage.export_capfile"), {:action => 'capfile', :project_id => current_project, :id => @stage}, {:onclick => "loadWindow('#{url_for(:action => 'capfile', :project_id => current_project, :id => @stage)}'); return false", :class => 'arrow_link'} %>
+  </div>	
+  <div class="box_bottom"></div>
+</div>
+
+<div class="clear"></div>
+<br />
+
+<fieldset class="fieldset">
+  <legend><%= t("stage_configurations") %></legend>
+  <%= render :partial => 'configs' %>
+  <br />
+  <div id="effective_config" style="display:none;">
+    <%= render :partial => 'effective_config' %>
+    <br />
+  </div>
+  <%= link_to t("stage_configuration.new"), new_project_stage_stage_configuration_path(current_project, @stage), :class => 'arrow_link' %> | 
+  <a id="s_e_c" href="#" onclick="show_effective_config(); return false" class="arrow_link"><%= t("stage_configuration.show_effective") %></a>
+  <a id="h_e_c" href="#" onclick="hide_effective_config(); return false" class="arrow_link" style="display:none;"><%= t("stage_configuration.hide_effective") %></a>
+</fieldset>
+
+<br /><br />
+
+<fieldset class="fieldset">
+  <legend><%= t("stage.used_recipes") %></legend>
+  <%= render :partial => 'recipes' %>
+  <br />
+  <%= link_to t("stage.manage_used_recipes"), {:action => 'recipes', :project_id => current_project, :id => @stage} , :class => 'arrow_link'%>
+</fieldset>
+
+<br /><br />
+
+<fieldset class="fieldset">
+  <legend><%= t("stage.deployed_hosts") %></legend>
+  <%= render :partial => 'roles' %>
+  <br />
+  <%= link_to t("stage.new_deployed_hosts"), new_project_stage_role_path(current_project, @stage) , :class => 'arrow_link'%>
+</fieldset>
+
+<br /><br />
+
+<fieldset class="fieldset">
+  <legend><%= t("deployment.recent") %></legend>
+  <%= render :partial => 'deployments' %>
+</fieldset>
+
+<br />
+
+<% content_for(:page_scripts) do %>
+<script type="text/javascript">
+  function show_effective_config() {
+    $('#h_e_c').show();
+    $('#s_e_c').hide();
+    $('#effective_config').show();
+  }
+
+  function hide_effective_config() {
+    $('#h_e_c').hide();
+    $('#s_e_c').show();
+    $('#effective_config').hide();
+  }
+</script>
+<% end %>
+

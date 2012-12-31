@@ -1,0 +1,43 @@
+<% content_for(:breadcrumb) do %>
+  <% breadcrumb_box do %>
+    <%= link_to t("hosts"), hosts_path %> &gt; 
+    <%= t("host.title") %> <%= link_to @host.name, host_path(@host) %> 
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = "#{t('host.title')} #{@host.name}" %>
+  <h2><%= t("host.title") %> <%= @host.name %></h2>
+<% end %>
+
+<div class="box">
+  <div class="box_top"></div>
+  <div class="box_middle">
+    <div>
+      <b><%= t("host.name2") %></b>
+      <p><%= @host.name %></p>
+    </div>
+    <div>
+      <b><%= t("host.stages") %></b>
+      <p><%= @host.stages.uniq.size %></p>
+    </div>
+    <div>
+      <b><%= t("host.roles") %></b>
+      <p><%= @host.roles.count %></p>
+    </div>
+    <% if current_user.admin? %>
+      <br />
+      <%= link_to t("edit"), edit_host_path(@host), :class => 'arrow_link' %> | 
+      <%= link_to t("delete"), host_path(@host), :confirm => 'Are you sure?', :method => :delete, :class => 'arrow_link'  %>
+    <% end %>
+  </div>
+  <div class="box_bottom"></div>
+</div>
+
+<div class="clear"></div>
+<br>
+
+<fieldset class="fieldset">
+  <legend><%= t("stages") %></legend>
+  <%= render :partial => 'stages' %>
+</fieldset>

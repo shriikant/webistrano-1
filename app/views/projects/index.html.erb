@@ -1,0 +1,48 @@
+<% content_for(:breadcrumb) do %>
+  <%= breadcrumb_box do %>
+    <%= t :projects %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = t("projects") %>
+  <h2><%= t :projects %></h2>
+<% end %>
+
+<fieldset class="fieldset">
+  <legend><%= pluralize Project.count, 'Project' %> listed</legend>
+
+  <% if @projects.empty? %>
+    <div><%= t("project.no_configured") %></div>
+  <% else %>
+    <table class="sortable">
+      <thead>
+        <tr>
+          <th width="1%"><%= t("project.name") %></th>
+          <th width="96%"><%= t("project.description") %></th>
+          <th width="1%"><%= t("project.stages") %></th>
+          <th width="1%"><%= t("project.deployments") %></th>
+          <th width="1%"><%= t("created_at") %></th>
+          <th width="1%"></th>
+          <th width="1%"></th>
+          <th width="1%"></th>
+        </tr>
+      </thead>
+      <% @projects.each do |project| %>
+        <tr class="<%= cycle :even, :odd, :name => 'projects'  %>">
+          <td><%= link_to project.name, project_path(project) %></td>
+          <td><%= project.description %></td>
+          <td><%= project.stages.count %></td>
+          <td><%= project.deployments.count %></td>
+          <td><%= project.created_at.to_s(:date_with_day) %></td>
+          <td class="nowrap"><%= link_to t("edit"), edit_project_path(project) %></td>
+          <td class="nowrap"><%= link_to t("project.clone"), clone_form_path(project) %></td>
+          <td class="nowrap"><%= link_to t("delete"), project_path(project), :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <br />
+  <%= link_to t("project.new"), new_project_path, :class => 'arrow_link' %>
+</fieldset>

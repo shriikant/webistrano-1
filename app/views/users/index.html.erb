@@ -1,0 +1,58 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_box do %>
+    <%= link_to t("users"), users_path %>
+  <% end %>
+<% end %>
+
+<% content_for :page_title do %>
+  <% @page_title = t("users") %>
+  <h2><%= t("users") %></h2>
+<% end %>
+
+<fieldset class="fieldset">
+  <legend><%= pluralize User.count, 'User' %> listed</legend>
+
+  <% if @users.empty? %>
+    <p><%= t("user.none") %></p>
+  <% else %>
+    <table class="sortable">
+      <thead>
+        <tr>
+          <th><%= t("user.login") %></th>
+          <th><%= t("user.email") %></th>
+          <th><%= t("user.admin") %></th>
+          <th><%= t("user.disabled") %></th>
+          <th><%= t("created_at") %></th>
+          <th width="1%"></th>
+          <th width="1%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.login, user_path(user) %></td>
+            <td><%= user.email %></td>
+            <td><%= user.admin? ? 'Admin' : '' %></td>
+            <td>
+              <% if user.disabled? %>
+                <span style="color:red">disabled</span>
+              <% end %>
+            </td>
+            <td><%= user.created_at.to_s(:date_with_day) %></td>
+            <% if current_user.admin? || current_user == user %>
+              <td class="nowrap"><%= link_to t("edit"), edit_user_path(user) %></td>
+            <% end %>
+            <% if current_user.admin? %>
+              <td class="nowrap"><%= link_to t("delete"), user_path(user), :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <br />
+  <% if current_user.admin? %>
+    <%= link_to t("user.new"), new_user_path, :class => 'arrow_link' %>
+  <% end %>
+</fieldset>

@@ -1,0 +1,22 @@
+<% content_for(:breadcrumb) do %>
+  <% breadcrumb_box do %>
+    <%= link_to t("projects"), projects_path %> &gt; 
+    <%= t("project.title") %> <%= link_to current_project.name, project_path(current_project) %> &gt; 
+    <%= t("stage.title") %> <%= link_to current_stage.name, project_stage_path(current_project, current_stage) %> &gt; 
+    <%= t("deployment.title") %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_title) do %>
+  <% @page_title = "Deployment of stage #{current_stage.name} of project #{current_project.name}" %>
+  <h2><%= t("deployment.title") %> - <%= link_to @deployment.task, project_stage_deployment_path(current_project, current_stage, @deployment) %></h2>
+<% end %>
+
+<div id="status_info">
+  <%= render :partial => 'status' %>
+</div>
+
+<% content_for(:page_scripts) do %>
+  <script type="text/javascript">
+  </script>
+<% end %>

@@ -1,0 +1,7 @@
+<% if @project.deployments.empty? %>
+  <div>
+    <%= t("deployment.never") %>
+  </div>
+<% else %>
+  <%= render :partial => 'deployments/list_item', :locals => {:deployments => @project.recent_deployments} %>
+<% end %>

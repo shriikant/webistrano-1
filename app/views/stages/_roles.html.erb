@@ -1,0 +1,30 @@
+<% if @stage.hosts.empty? %>
+  <p><%= t("stage.deployed_hosts_none") %></p>
+<% else %>
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th><%= t("role.host") %></th>
+        <th><%= t("role.role") %></th>
+        <th><%= t("role.ssh_port") %></th>
+        <th><%= t("role.attributes") %></th>
+        <th><%= t("role.status") %></th>
+        <th width="1%"></th>
+        <th width="1%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for role in @stage.roles %>
+        <tr>
+          <td><%= link_to role.host.name, host_path(role.host) %></td>
+          <td><%= role.name %></td>
+          <td><%= role.ssh_port || t("role.default") %></td>
+          <td><%= role.role_attribute_hash.inspect unless role.role_attribute_hash.blank?  %></td>
+          <td><%= raw role.status_in_html %></td>
+          <td class="nowrap"><%= link_to t("edit"), edit_project_stage_role_path(@project, @stage, role) %></td>
+          <td class="nowrap"><%= link_to t("delete"), project_stage_role_path(@project, @stage, role), :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     create_table(:users) do |t|
       t.string    :login
-      t.boolean   :admin, :default => false
+      t.boolean   :admin
       t.string    :time_zone, :default => 'UTC'
       t.timestamp :disabled
 

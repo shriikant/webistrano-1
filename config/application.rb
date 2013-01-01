@@ -61,6 +61,8 @@ module Webistrano
 
     config.assets.initialize_on_precompile = false
 
+    config.logger = Logger.new(STDOUT)
+
     initializer "webistrano.load" do
       require 'webistrano'
     end

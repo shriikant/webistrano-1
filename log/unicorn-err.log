@@ -1,0 +1,13 @@
+I, [2013-01-01T20:33:15.823972 #49168]  INFO -- : listening on addr=0.0.0.0:40914 fd=9
+I, [2013-01-01T20:33:15.824108 #49168]  INFO -- : worker=0 spawning...
+I, [2013-01-01T20:33:15.825038 #49168]  INFO -- : worker=1 spawning...
+I, [2013-01-01T20:33:15.825521 #49168]  INFO -- : master process ready
+I, [2013-01-01T20:33:15.825960 #49169]  INFO -- : worker=0 spawned pid=49169
+I, [2013-01-01T20:33:15.826314 #49169]  INFO -- : Refreshing Gem list
+I, [2013-01-01T20:33:15.826302 #49170]  INFO -- : worker=1 spawned pid=49170
+I, [2013-01-01T20:33:15.826620 #49170]  INFO -- : Refreshing Gem list
+I, [2013-01-01T20:33:19.910737 #49170]  INFO -- : worker=1 ready
+I, [2013-01-01T20:33:19.910737 #49169]  INFO -- : worker=0 ready
+I, [2013-01-01T20:34:05.274891 #49168]  INFO -- : reaped #<Process::Status: pid 49170 exit 0> worker=1
+I, [2013-01-01T20:34:05.275200 #49168]  INFO -- : reaped #<Process::Status: pid 49169 exit 0> worker=0
+I, [2013-01-01T20:34:05.275441 #49168]  INFO -- : master complete

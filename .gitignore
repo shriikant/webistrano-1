@@ -2,7 +2,6 @@
 vendor/bundler
 
 tmp/*
-log/*.log
 db/*.sqlite3
 
 *~

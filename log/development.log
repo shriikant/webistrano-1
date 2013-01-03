@@ -572,3 +572,510 @@ Processing by RecipesController#preview as HTML
 Completed 200 OK in 60ms (Views: 58.8ms | ActiveRecord: 0.2ms)
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36mDeployment Load (46.3ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 1
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.2ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 11:22:39.013570', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 1[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.5ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+*** LOCAL SCM ERROR: svn: OPTIONS of ''https://svn.example.com/project/trunk'': Could not resolve hostname `svn.example.com'': Host not found (https://svn.example.com)
+', "updated_at" = '2013-01-03 11:22:39.283148', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 1
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+*** LOCAL SCM ERROR: svn: OPTIONS of ''https://svn.example.com/project/trunk'': Could not resolve hostname `svn.example.com'': Host not found (https://svn.example.com)
+*** Local scm command failed
+', "updated_at" = '2013-01-03 11:22:39.294992', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 1[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.2ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "deployments" SET "status" = 'failed', "completed_at" = '2013-01-03 11:22:39.301388', "updated_at" = '2013-01-03 11:22:39.301938', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 1[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+
+Sent mail to rt.kametaro@gmail.com (69ms)
+Date: Thu, 03 Jan 2013 20:22:39 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e569ff6746a_e46e3fddb8835ad8749b6@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: failed
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+Connecting to database specified by database.yml
+  [1m[36mDeployment Load (43.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 2
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 11:25:32.064841', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+', "updated_at" = '2013-01-03 11:25:32.086199', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.5ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 991ms
+', "updated_at" = '2013-01-03 11:25:33.089710', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  UPDATE "deployments" SET "revision" = '7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5', "updated_at" = '2013-01-03 11:25:33.094160', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "pid" = 58651, "updated_at" = '2013-01-03 11:25:33.097803', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 991ms
+ * executing `deploy:hello''
+', "updated_at" = '2013-01-03 11:25:33.106918', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 991ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+', "updated_at" = '2013-01-03 11:25:33.115731', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 991ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 11:25:33.124411', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 991ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+*** connection failed for: 49.212.141.250 (Net::SSH::AuthenticationFailed: deployment_user(SSH login))
+', "updated_at" = '2013-01-03 11:25:36.059435', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (2.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.2ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "deployments" SET "status" = 'failed', "completed_at" = '2013-01-03 11:25:36.068140', "updated_at" = '2013-01-03 11:25:36.068683', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 2[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+
+Sent mail to rt.kametaro@gmail.com (83ms)
+Date: Thu, 03 Jan 2013 20:25:36 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e56ab02a282_e51b3fc704c35ae0129ca@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: failed
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+Connecting to database specified by database.yml
+  [1m[36mDeployment Load (6.7ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 3
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 11:27:22.181818', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+', "updated_at" = '2013-01-03 11:27:22.202046', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1611ms
+', "updated_at" = '2013-01-03 11:27:23.825307', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "revision" = '7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5', "updated_at" = '2013-01-03 11:27:23.830578', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "pid" = 58870, "updated_at" = '2013-01-03 11:27:23.833287', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1611ms
+ * executing `deploy:hello''
+', "updated_at" = '2013-01-03 11:27:23.842571', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1611ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+', "updated_at" = '2013-01-03 11:27:23.851443', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1611ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 11:27:23.860319', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.5ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1611ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+*** connection failed for: 49.212.141.250 (Net::SSH::AuthenticationFailed: kametaro)
+', "updated_at" = '2013-01-03 11:27:26.647666', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (3.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.3ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "deployments" SET "status" = 'failed', "completed_at" = '2013-01-03 11:27:26.659447', "updated_at" = '2013-01-03 11:27:26.660204', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 3[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+
+Sent mail to rt.kametaro@gmail.com (84ms)
+Date: Thu, 03 Jan 2013 20:27:26 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e56b1ec6662_e5f63fcb25835ad8752cb@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: failed
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+Connecting to database specified by database.yml
+  [1m[36mDeployment Load (46.2ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 4
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 11:28:13.569491', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+', "updated_at" = '2013-01-03 11:28:13.589659', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+', "updated_at" = '2013-01-03 11:28:14.673873', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "revision" = '7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5', "updated_at" = '2013-01-03 11:28:14.678697', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "pid" = 58935, "updated_at" = '2013-01-03 11:28:14.681669', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+', "updated_at" = '2013-01-03 11:28:14.690971', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+', "updated_at" = '2013-01-03 11:28:14.700011', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 11:28:14.708851', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+', "updated_at" = '2013-01-03 11:28:15.428436', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.6ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [out :: 49.212.141.250] Linux ww8476ue.sakura.ne.jp 2.6.32-220.13.1.el6.x86_64 #1 SMP Tue Apr 17 23:56:34 BST 2012 x86_64 x86_64 x86_64 GNU/Linux
+', "updated_at" = '2013-01-03 11:28:15.497942', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1071ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [out :: 49.212.141.250] Linux ww8476ue.sakura.ne.jp 2.6.32-220.13.1.el6.x86_64 #1 SMP Tue Apr 17 23:56:34 BST 2012 x86_64 x86_64 x86_64 GNU/Linux
+ command finished in 136ms
+', "updated_at" = '2013-01-03 11:28:15.509635', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "deployments" SET "status" = 'success', "completed_at" = '2013-01-03 11:28:15.515595', "updated_at" = '2013-01-03 11:28:15.516063', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 4[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+
+Sent mail to rt.kametaro@gmail.com (84ms)
+Date: Thu, 03 Jan 2013 20:28:15 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e56b4f97aaa_e6373ffa95435ad8409f5@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: success
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+

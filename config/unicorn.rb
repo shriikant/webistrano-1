@@ -1,3 +1,4 @@
+# -*- coding: undecided -*-
 # What the timeout for killing busy workers is, in seconds
 timeout 60
  
@@ -15,3 +16,7 @@ end
 after_fork do |server, worker|
   GC.disable
 end
+
+# ログ
+stderr_path File.expand_path('log/unicorn_err.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/unicorn_out.log', ENV['RAILS_ROOT'])

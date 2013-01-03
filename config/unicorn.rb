@@ -7,8 +7,8 @@ preload_app true
 # How many worker processes
 worker_processes 4
 
-stdout_path "log/unicorn-out.log"
-stderr_path "log/unicorn-err.log"
+stdout_path "tmp/unicorn-out.log"
+stderr_path "tmp/unicorn-err.log"
  
 # before/after forks
 before_fork do |server, worker|

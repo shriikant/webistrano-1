@@ -6,6 +6,3 @@ preload_app true
  
 # How many worker processes
 worker_processes 2
-
-stdout_path "tmp/unicorn-out.log"
-stderr_path "tmp/unicorn-err.log"

@@ -1,4 +1,3 @@
-# -*- coding: undecided -*-
 # What the timeout for killing busy workers is, in seconds
 timeout 60
  
@@ -7,6 +6,9 @@ preload_app true
  
 # How many worker processes
 worker_processes 4
+
+stdout_path "log/unicorn-out.log"
+stderr_path "log/unicorn-err.log"
  
 # before/after forks
 before_fork do |server, worker|
@@ -17,6 +19,3 @@ after_fork do |server, worker|
   GC.disable
 end
 
-# ログ
-stderr_path File.expand_path('log/unicorn_err.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn_out.log', ENV['RAILS_ROOT'])

@@ -2212,3 +2212,4 @@ DEPRECATION WARNING: Passing a template handler in the template name is deprecat
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
   Rendered deployments/_status.html.erb (4.2ms)
 Completed 200 OK in 10ms (Views: 5.4ms | ActiveRecord: 0.6ms)
+Connecting to database specified by database.yml

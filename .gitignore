@@ -1,11 +1,9 @@
 .bundle
 vendor/bundler
-
 tmp/*
 db/*.sqlite3
-
 *~
 .DS_Store
 Thumbs.db
-
 .*.sw[a-z]
+.idea

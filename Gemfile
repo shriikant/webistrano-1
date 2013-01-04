@@ -21,18 +21,18 @@ group :development do
   gem "pry-rails"
 end
 
-#group :test do
-#  gem "sqlite3"
-#  gem "test-unit"
-#  gem "mocha", "0.12.7"
-#  gem "factory_girl_rails"
-#  gem "database_cleaner"
-#end
+group :test do
+  gem "sqlite3"
+  gem "test-unit"
+  gem "mocha", "0.12.7"
+  gem "factory_girl_rails"
+  gem "database_cleaner"
+end
 
 group :production do
   gem "pg"
-#  gem "unicorn"
-  gem "thin"
+  gem "unicorn"
+#  gem "thin"
 end
 
 group :assets do

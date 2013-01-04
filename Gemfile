@@ -31,7 +31,8 @@ end
 
 group :production do
   gem "pg"
-  gem "unicorn"
+#  gem "unicorn"
+  gem "thin"
 end
 
 group :assets do

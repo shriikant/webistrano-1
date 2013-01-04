@@ -1079,3 +1079,1136 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: 7bit
 
 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-01-04 00:11:44 +0900
+Processing by ProjectsController#dashboard as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mDeployment Load (0.2ms)[0m  SELECT "deployments".* FROM "deployments" ORDER BY created_at DESC LIMIT 10
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered deployments/_list_item.html.erb (167.7ms)
+  Rendered projects/dashboard.html.erb within layouts/application (263.5ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" ORDER BY name ASC
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  Rendered layouts/_projects.html.erb (16.4ms)
+  Rendered layouts/_menu_box.html.erb (18.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  Rendered layouts/_hosts.html.erb (10.9ms)
+  Rendered layouts/_menu_box.html.erb (11.9ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT "recipes".* FROM "recipes" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  Rendered layouts/_recipes.html.erb (10.5ms)
+  Rendered layouts/_menu_box.html.erb (11.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY login ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  Rendered layouts/_users.html.erb (2.9ms)
+  Rendered layouts/_menu_box.html.erb (3.9ms)
+  Rendered layouts/_menu.html.erb (152.3ms)
+Completed 200 OK in 557ms (Views: 449.6ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2013-01-04 00:11:48 +0900
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "deployments" INNER JOIN "stages" ON "deployments"."stage_id" = "stages"."id" WHERE "stages"."project_id" = 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1
+  [1m[36mProjectConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  Rendered projects/_configs.html.erb (87.6ms)
+  [1m[35m (0.2ms)[0m  SELECT DISTINCT COUNT(DISTINCT "hosts"."id") FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1[0m
+  Rendered projects/_stages.html.erb (20.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "deployments" INNER JOIN "stages" ON "deployments"."stage_id" = "stages"."id" WHERE "stages"."project_id" = 1
+  [1m[36mDeployment Load (0.2ms)[0m  [1mSELECT "deployments".* FROM "deployments" INNER JOIN "stages" ON "deployments"."stage_id" = "stages"."id" WHERE "stages"."project_id" = 1 ORDER BY deployments.created_at DESC LIMIT 3[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered deployments/_list_item.html.erb (12.3ms)
+  Rendered projects/_deployments.html.erb (16.0ms)
+  Rendered projects/show.html.erb within layouts/application (156.3ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  Rendered layouts/_projects.html.erb (4.0ms)
+  Rendered layouts/_menu_box.html.erb (4.8ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  Rendered layouts/_hosts.html.erb (3.2ms)
+  Rendered layouts/_menu_box.html.erb (3.9ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT "recipes".* FROM "recipes" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  Rendered layouts/_recipes.html.erb (1.7ms)
+  Rendered layouts/_menu_box.html.erb (2.5ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY login ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  Rendered layouts/_users.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  Rendered layouts/_menu.html.erb (16.9ms)
+Completed 200 OK in 182ms (Views: 176.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/projects/1/stages/1" for 127.0.0.1 at 2013-01-04 00:11:50 +0900
+Processing by StagesController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1[0m  [["id", "1"]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35m (0.2ms)[0m  SELECT DISTINCT COUNT(DISTINCT "hosts"."id") FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  Rendered stages/_configs.html.erb (1.2ms)
+  Rendered stages/_effective_config.html.erb (2.4ms)
+  [1m[36mRecipe Load (0.2ms)[0m  [1mSELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  Rendered stages/_recipes.html.erb (3.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT DISTINCT COUNT(DISTINCT "hosts"."id") FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1[0m
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles" WHERE "roles"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" INNER JOIN "deployments_roles" ON "deployments"."id" = "deployments_roles"."deployment_id" WHERE "deployments_roles"."role_id" = 1
+  Rendered stages/_roles.html.erb (20.6ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 ORDER BY created_at DESC
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered deployments/_list_item.html.erb (17.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1
+  Rendered stages/_deployments.html.erb (21.8ms)
+  Rendered stages/show.html.erb within layouts/application (68.5ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" ORDER BY name ASC
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  Rendered layouts/_projects.html.erb (4.4ms)
+  Rendered layouts/_menu_box.html.erb (5.2ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  Rendered layouts/_hosts.html.erb (3.3ms)
+  Rendered layouts/_menu_box.html.erb (4.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT "recipes".* FROM "recipes" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  Rendered layouts/_recipes.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY login ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  Rendered layouts/_users.html.erb (1.7ms)
+  Rendered layouts/_menu_box.html.erb (2.6ms)
+  Rendered layouts/_menu.html.erb (17.7ms)
+Completed 200 OK in 186ms (Views: 90.3ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/projects/1/stages/1/deployments/new?task=deploy" for 127.0.0.1 at 2013-01-04 00:11:52 +0900
+Processing by DeploymentsController#new as HTML
+  Parameters: {"task"=>"deploy", "project_id"=>"1", "stage_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mHost Load (0.2ms)[0m  SELECT DISTINCT "hosts".* FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  Rendered deployments/_form.html.erb (4.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  Rendered deployments/new.html.erb within layouts/application (11.6ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" 
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY name ASC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "projects" 
+  Rendered layouts/_projects.html.erb (4.0ms)
+  Rendered layouts/_menu_box.html.erb (4.8ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  Rendered layouts/_hosts.html.erb (3.2ms)
+  Rendered layouts/_menu_box.html.erb (4.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  Rendered layouts/_recipes.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" ORDER BY login ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  Rendered layouts/_users.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  Rendered layouts/_menu.html.erb (16.8ms)
+Completed 200 OK in 43ms (Views: 33.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/projects/1/stages/1/deployments" for 127.0.0.1 at 2013-01-04 00:11:57 +0900
+Processing by DeploymentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"J+H6OEhthlXWOYnrKWUcgRd+qUe2NyRnRpYaXUF+fRM=", "deployment"=>{"task"=>"deploy", "description"=>"てすと", "host_ids"=>["2"]}, "commit"=>"デプロイ実行", "project_id"=>"1", "stage_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT DISTINCT "hosts".* FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (2.5ms)[0m  UPDATE "stages" SET "locked" = 1 WHERE "stages"."id" = 1
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "deployments" ("completed_at", "created_at", "description", "excluded_host_ids", "log", "pid", "revision", "stage_id", "status", "task", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["completed_at", nil], ["created_at", Thu, 03 Jan 2013 15:11:57 UTC +00:00], ["description", "てすと"], ["excluded_host_ids", "--- []\n"], ["log", nil], ["pid", nil], ["revision", nil], ["stage_id", 1], ["status", "running"], ["task", "deploy"], ["updated_at", Thu, 03 Jan 2013 15:11:57 UTC +00:00], ["user_id", 1]]
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles" WHERE "roles"."stage_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "deployments_roles" ("deployment_id", "role_id") VALUES (5, 1)[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = 5 WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Calling other ruby process in the background in order to deploy deployment 5 (stage 1/staging)
+Redirected to http://localhost:3000/projects/1/stages/1/deployments/5
+Completed 302 Found in 47ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/projects/1/stages/1/deployments/5" for 127.0.0.1 at 2013-01-04 00:11:57 +0900
+Processing by DeploymentsController#show as HTML
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"5"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.2ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "5"]]
+  [1m[35mStage Load (0.2ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (7.3ms)
+  Rendered deployments/show.html.erb within layouts/application (11.3ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" 
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY name ASC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "projects" 
+  Rendered layouts/_projects.html.erb (5.2ms)
+  Rendered layouts/_menu_box.html.erb (6.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  Rendered layouts/_hosts.html.erb (3.8ms)
+  Rendered layouts/_menu_box.html.erb (4.7ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  Rendered layouts/_recipes.html.erb (2.0ms)
+  Rendered layouts/_menu_box.html.erb (3.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY login ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  Rendered layouts/_users.html.erb (2.0ms)
+  Rendered layouts/_menu_box.html.erb (3.0ms)
+  Rendered layouts/_menu.html.erb (20.9ms)
+Completed 200 OK in 45ms (Views: 37.7ms | ActiveRecord: 2.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/projects/1/stages/1/deployments/5.js" for 127.0.0.1 at 2013-01-04 00:12:02 +0900
+Processing by DeploymentsController#show as JS
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "5"]]
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from realtime at /Users/kametaro-main/.rvm/rubies/ruby-1.9.3-p327/lib/ruby/1.9.1/benchmark.rb:295)
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (7.1ms)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 0.6ms)
+  [1m[36mDeployment Load (6.7ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 5
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 15:12:03.308819', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (2.7ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+', "updated_at" = '2013-01-03 15:12:03.370155', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.5ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.6ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.2ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+', "updated_at" = '2013-01-03 15:12:05.274907', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "revision" = '7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5', "updated_at" = '2013-01-03 15:12:05.278134', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "pid" = 73197, "updated_at" = '2013-01-03 15:12:05.280650', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.5ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+', "updated_at" = '2013-01-03 15:12:05.291106', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.6ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+', "updated_at" = '2013-01-03 15:12:05.305343', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+', "updated_at" = '2013-01-03 15:12:05.314747', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+', "updated_at" = '2013-01-03 15:12:05.323518', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+', "updated_at" = '2013-01-03 15:12:05.348578', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 15:12:05.358048', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+
+
+Started GET "/projects/1/stages/1/deployments/5.js" for 127.0.0.1 at 2013-01-04 00:12:07 +0900
+Processing by DeploymentsController#show as JS
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"5"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "5"]]
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from realtime at /Users/kametaro-main/.rvm/rubies/ruby-1.9.3-p327/lib/ruby/1.9.1/benchmark.rb:295)
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (5.4ms)
+Completed 200 OK in 12ms (Views: 6.7ms | ActiveRecord: 0.7ms)
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.5ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+', "updated_at" = '2013-01-03 15:12:11.078209', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+', "updated_at" = '2013-01-03 15:12:11.133464', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+', "updated_at" = '2013-01-03 15:12:11.143267', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+', "updated_at" = '2013-01-03 15:12:11.152340', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.4ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+ * executing "rm -rf /path/to/deployment_base/releases/20130103151205; true"
+', "updated_at" = '2013-01-03 15:12:11.164018', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+ * executing "rm -rf /path/to/deployment_base/releases/20130103151205; true"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 15:12:11.172744', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.5ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+ * executing "rm -rf /path/to/deployment_base/releases/20130103151205; true"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+', "updated_at" = '2013-01-03 15:12:11.233803', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.5ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+ * executing "rm -rf /path/to/deployment_base/releases/20130103151205; true"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ command finished in 104ms
+', "updated_at" = '2013-01-03 15:12:11.288495', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.4ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 1888ms
+ * executing `deploy''
+ * executing `deploy:update''
+ ** transaction: start
+ * executing `deploy:update_code''
+ * executing "git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [49.212.141.250 :: out] fatal: could not create leading directories of ''/path/to/deployment_base/releases/20130103151205'': Permission denied
+ command finished in 118ms
+*** [deploy:update_code] rolling back
+ * executing "rm -rf /path/to/deployment_base/releases/20130103151205; true"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ command finished in 104ms
+*** failed: "sh -c ''git clone -q https://github.com/kametaro/skelton.git /path/to/deployment_base/releases/20130103151205 && cd /path/to/deployment_base/releases/20130103151205 && git checkout -q -b deploy 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 && (echo 7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5 > /path/to/deployment_base/releases/20130103151205/REVISION)''" on 49.212.141.250
+', "updated_at" = '2013-01-03 15:12:11.300673', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.2ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  UPDATE "deployments" SET "status" = 'failed', "completed_at" = '2013-01-03 15:12:11.306770', "updated_at" = '2013-01-03 15:12:11.307238', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 5
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+
+Sent mail to rt.kametaro@gmail.com (50ms)
+Date: Fri, 04 Jan 2013 00:12:11 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e59fcb67315_11ded3ff271435adc5931d@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: failed
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+
+
+Started GET "/projects/1/stages/1/deployments/5.js" for 127.0.0.1 at 2013-01-04 00:12:12 +0900
+Processing by DeploymentsController#show as JS
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"5"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "5"]]
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from realtime at /Users/kametaro-main/.rvm/rubies/ruby-1.9.3-p327/lib/ruby/1.9.1/benchmark.rb:295)
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (4.3ms)
+Completed 200 OK in 10ms (Views: 5.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/projects/1/stages/1/deployments/5" for 127.0.0.1 at 2013-01-04 00:12:39 +0900
+Processing by DeploymentsController#show as HTML
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "5"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (4.3ms)
+  Rendered deployments/show.html.erb within layouts/application (6.7ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" 
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY name ASC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "projects" 
+  Rendered layouts/_projects.html.erb (4.2ms)
+  Rendered layouts/_menu_box.html.erb (5.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  Rendered layouts/_hosts.html.erb (3.3ms)
+  Rendered layouts/_menu_box.html.erb (4.1ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  Rendered layouts/_recipes.html.erb (1.8ms)
+  Rendered layouts/_menu_box.html.erb (2.6ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" ORDER BY login ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  Rendered layouts/_users.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  Rendered layouts/_menu.html.erb (17.9ms)
+Completed 200 OK in 35ms (Views: 29.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/projects/1/stages/1" for 127.0.0.1 at 2013-01-04 00:12:42 +0900
+Processing by StagesController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36m (0.2ms)[0m  [1mSELECT DISTINCT COUNT(DISTINCT "hosts"."id") FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1[0m
+  Rendered stages/_configs.html.erb (0.2ms)
+  Rendered stages/_effective_config.html.erb (1.5ms)
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC[0m
+  Rendered stages/_recipes.html.erb (2.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT DISTINCT COUNT(DISTINCT "hosts"."id") FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles" WHERE "roles"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1
+  [1m[36mDeployment Load (0.2ms)[0m  [1mSELECT "deployments".* FROM "deployments" INNER JOIN "deployments_roles" ON "deployments"."id" = "deployments_roles"."deployment_id" WHERE "deployments_roles"."role_id" = 1[0m
+  Rendered stages/_roles.html.erb (5.8ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1
+  [1m[36mDeployment Load (0.2ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 ORDER BY created_at DESC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered deployments/_list_item.html.erb (20.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "deployments" WHERE "deployments"."stage_id" = 1
+  Rendered stages/_deployments.html.erb (23.7ms)
+  Rendered stages/show.html.erb within layouts/application (46.8ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" ORDER BY name ASC
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "projects" [0m
+  Rendered layouts/_projects.html.erb (4.1ms)
+  Rendered layouts/_menu_box.html.erb (4.9ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "hosts" 
+  Rendered layouts/_hosts.html.erb (3.3ms)
+  Rendered layouts/_menu_box.html.erb (4.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT "recipes".* FROM "recipes" ORDER BY name ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  Rendered layouts/_recipes.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY login ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" 
+  Rendered layouts/_users.html.erb (1.7ms)
+  Rendered layouts/_menu_box.html.erb (2.7ms)
+  Rendered layouts/_menu.html.erb (17.5ms)
+Completed 200 OK in 101ms (Views: 68.8ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/projects/1/stages/1/deployments/new?task=deploy:hello" for 127.0.0.1 at 2013-01-04 00:12:48 +0900
+Processing by DeploymentsController#new as HTML
+  Parameters: {"task"=>"deploy:hello", "project_id"=>"1", "stage_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.1ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mHost Load (0.2ms)[0m  SELECT DISTINCT "hosts".* FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  Rendered deployments/_form.html.erb (3.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  Rendered deployments/new.html.erb within layouts/application (7.7ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" 
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY name ASC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "projects" 
+  Rendered layouts/_projects.html.erb (4.2ms)
+  Rendered layouts/_menu_box.html.erb (5.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  Rendered layouts/_hosts.html.erb (3.3ms)
+  Rendered layouts/_menu_box.html.erb (4.1ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  Rendered layouts/_recipes.html.erb (1.6ms)
+  Rendered layouts/_menu_box.html.erb (2.3ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" ORDER BY login ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  Rendered layouts/_users.html.erb (1.7ms)
+  Rendered layouts/_menu_box.html.erb (2.4ms)
+  Rendered layouts/_menu.html.erb (17.3ms)
+Completed 200 OK in 40ms (Views: 29.9ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/projects/1/stages/1/deployments" for 127.0.0.1 at 2013-01-04 00:12:53 +0900
+Processing by DeploymentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"J+H6OEhthlXWOYnrKWUcgRd+qUe2NyRnRpYaXUF+fRM=", "deployment"=>{"task"=>"deploy:hello", "description"=>"てすと", "host_ids"=>["2"]}, "commit"=>"デプロイ実行", "project_id"=>"1", "stage_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.1ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mHost Load (0.2ms)[0m  SELECT DISTINCT "hosts".* FROM "hosts" INNER JOIN "roles" ON "hosts"."id" = "roles"."host_id" WHERE "roles"."stage_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "stages" SET "locked" = 1 WHERE "stages"."id" = 1
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" WHERE "roles"."stage_id" = 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "deployments" ("completed_at", "created_at", "description", "excluded_host_ids", "log", "pid", "revision", "stage_id", "status", "task", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["completed_at", nil], ["created_at", Thu, 03 Jan 2013 15:12:53 UTC +00:00], ["description", "てすと"], ["excluded_host_ids", "--- []\n"], ["log", nil], ["pid", nil], ["revision", nil], ["stage_id", 1], ["status", "running"], ["task", "deploy:hello"], ["updated_at", Thu, 03 Jan 2013 15:12:53 UTC +00:00], ["user_id", 1]]
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles" WHERE "roles"."stage_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "deployments_roles" ("deployment_id", "role_id") VALUES (6, 1)[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = 6 WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Calling other ruby process in the background in order to deploy deployment 6 (stage 1/staging)
+Redirected to http://localhost:3000/projects/1/stages/1/deployments/6
+Completed 302 Found in 29ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/projects/1/stages/1/deployments/6" for 127.0.0.1 at 2013-01-04 00:12:53 +0900
+Processing by DeploymentsController#show as HTML
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"6"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "6"]]
+  [1m[35mStage Load (0.2ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (5.2ms)
+  Rendered deployments/show.html.erb within layouts/application (8.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" 
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY name ASC[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 ORDER BY name ASC
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "stages" WHERE "stages"."project_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "projects" 
+  Rendered layouts/_projects.html.erb (4.9ms)
+  Rendered layouts/_menu_box.html.erb (5.9ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  [1m[35mHost Load (0.1ms)[0m  SELECT "hosts".* FROM "hosts" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "hosts" [0m
+  Rendered layouts/_hosts.html.erb (3.6ms)
+  Rendered layouts/_menu_box.html.erb (4.5ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "recipes" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  [1m[35mRecipe Load (0.1ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY name ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" [0m
+  Rendered layouts/_recipes.html.erb (2.0ms)
+  Rendered layouts/_menu_box.html.erb (2.9ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY login ASC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+  Rendered layouts/_users.html.erb (1.9ms)
+  Rendered layouts/_menu_box.html.erb (2.9ms)
+  Rendered layouts/_menu.html.erb (20.1ms)
+Completed 200 OK in 39ms (Views: 33.1ms | ActiveRecord: 1.8ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/projects/1/stages/1/deployments/6.js" for 127.0.0.1 at 2013-01-04 00:12:59 +0900
+Processing by DeploymentsController#show as JS
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"6"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "6"]]
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from realtime at /Users/kametaro-main/.rvm/rubies/ruby-1.9.3-p327/lib/ruby/1.9.1/benchmark.rb:295)
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (4.5ms)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 0.5ms)
+  [1m[36mDeployment Load (6.9ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT "roles".* FROM "roles" INNER JOIN "deployments_roles" ON "roles"."id" = "deployments_roles"."role_id" WHERE "deployments_roles"."deployment_id" = 6
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mHost Load (0.1ms)[0m  [1mSELECT "hosts".* FROM "hosts" WHERE "hosts"."id" = 2 LIMIT 1[0m
+  [1m[35mRecipe Load (0.2ms)[0m  SELECT "recipes".* FROM "recipes" INNER JOIN "recipes_stages" ON "recipes"."id" = "recipes_stages"."recipe_id" WHERE "recipes_stages"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+', "updated_at" = '2013-01-03 15:12:59.711501', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+', "updated_at" = '2013-01-03 15:12:59.732284', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+', "updated_at" = '2013-01-03 15:13:00.714972', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "revision" = '7ee2931f025cdf9aa1b333a7d01d9e9ac35e23a5', "updated_at" = '2013-01-03 15:13:00.720129', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mUPDATE "deployments" SET "pid" = 73268, "updated_at" = '2013-01-03 15:13:00.722914', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+', "updated_at" = '2013-01-03 15:13:00.731846', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+', "updated_at" = '2013-01-03 15:13:00.741041', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.3ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+', "updated_at" = '2013-01-03 15:13:00.750249', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.4ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+', "updated_at" = '2013-01-03 15:13:01.356604', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectConfiguration Load (0.5ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC
+  [1m[36mStageConfiguration Load (0.2ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC[0m
+  [1m[35mDeployment Load (0.1ms)[0m  SELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [out :: 49.212.141.250] Linux ww8476ue.sakura.ne.jp 2.6.32-220.13.1.el6.x86_64 #1 SMP Tue Apr 17 23:56:34 BST 2012 x86_64 x86_64 x86_64 GNU/Linux
+', "updated_at" = '2013-01-03 15:13:01.424012', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProjectConfiguration Load (0.3ms)[0m  [1mSELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('ProjectConfiguration') AND "configuration_parameters"."project_id" = 1 ORDER BY name ASC[0m
+  [1m[35mStageConfiguration Load (0.2ms)[0m  SELECT "configuration_parameters".* FROM "configuration_parameters" WHERE "configuration_parameters"."type" IN ('StageConfiguration') AND "configuration_parameters"."stage_id" = 1 ORDER BY name ASC
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mStage Load (0.1ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "deployments" SET "log" = ' ** loading stage recipe ''uname''
+ executing locally: "git ls-remote https://github.com/kametaro/skelton.git HEAD"
+ command finished in 970ms
+ * executing `deploy:hello''
+ * executing "uname -a"
+ servers: ["49.212.141.250"]
+ [49.212.141.250] executing command
+ ** [out :: 49.212.141.250] Linux ww8476ue.sakura.ne.jp 2.6.32-220.13.1.el6.x86_64 #1 SMP Tue Apr 17 23:56:34 BST 2012 x86_64 x86_64 x86_64 GNU/Linux
+ command finished in 129ms
+', "updated_at" = '2013-01-03 15:13:01.435829', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mStage Load (0.0ms)[0m  [1mSELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "stages" SET "locked" = 0 WHERE "stages"."id" = 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "stages" SET "locked_by_deployment_id" = NULL WHERE "stages"."id" = 1[0m
+  [1m[35mStage Load (0.0ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "deployments" SET "status" = 'success', "completed_at" = '2013-01-03 15:13:01.441657', "updated_at" = '2013-01-03 15:13:01.442116', "excluded_host_ids" = '--- []
+' WHERE "deployments"."id" = 6[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+
+Sent mail to rt.kametaro@gmail.com (84ms)
+Date: Fri, 04 Jan 2013 00:13:01 +0900
+From: Webistrano
+To: rt.kametaro@gmail.com
+Message-ID: <50e59ffd9175a_11e343fe4c0835ad855057@tsuji-no-Mac-mini.local.mail>
+Subject: Deployment of skelton/staging finished: success
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+
+
+Started GET "/projects/1/stages/1/deployments/6.js" for 127.0.0.1 at 2013-01-04 00:13:04 +0900
+Processing by DeploymentsController#show as JS
+  Parameters: {"project_id"=>"1", "stage_id"=>"1", "id"=>"6"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."project_id" = 1 AND "stages"."id" = ? ORDER BY name ASC LIMIT 1  [["id", "1"]]
+  [1m[36mDeployment Load (0.1ms)[0m  [1mSELECT "deployments".* FROM "deployments" WHERE "deployments"."stage_id" = 1 AND "deployments"."id" = ? ORDER BY created_at DESC LIMIT 1[0m  [["id", "6"]]
+DEPRECATION WARNING: Passing a template handler in the template name is deprecated. You can simply remove the handler name or pass render :handlers => [:erb] instead. (called from realtime at /Users/kametaro-main/.rvm/rubies/ruby-1.9.3-p327/lib/ruby/1.9.1/benchmark.rb:295)
+  [1m[35mStage Load (0.1ms)[0m  SELECT "stages".* FROM "stages" WHERE "stages"."id" = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered deployments/_status.html.erb (4.2ms)
+Completed 200 OK in 10ms (Views: 5.4ms | ActiveRecord: 0.6ms)

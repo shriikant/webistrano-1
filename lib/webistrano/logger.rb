@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # a logger for Capistrano::Configuration that logs to the database
 module Webistrano
   class Logger

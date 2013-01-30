@@ -15,6 +15,7 @@ gem "libv8"
 group :development do
   gem "sqlite3"
   gem "thin"
+  gem "zeus"
 
   gem "debugger"
   gem "pry"

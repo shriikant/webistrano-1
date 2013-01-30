@@ -7,3 +7,5 @@ db/*.sqlite3
 Thumbs.db
 .*.sw[a-z]
 .idea
+log
+*.iml
